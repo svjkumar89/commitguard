@@ -22,9 +22,9 @@ describe('CliReporter', () => {
     };
 
     const output = reporter.report(mockResult);
-    expect(output).toContain('Git Guardian Enterprise Report');
+    expect(output).toContain('CommitGuard');
     expect(output).toContain('100 / 100');
-    expect(output).toContain('No violations found');
+    expect(output).toContain('All checks passed');
   });
 
   it('should format a report with blocks', () => {
@@ -45,7 +45,7 @@ describe('CliReporter', () => {
     };
 
     const output = reporter.report(mockResult);
-    expect(output).toContain('Git Guardian Enterprise Report');
+    expect(output).toContain('CommitGuard');
     expect(output).toContain('50 / 100');
     expect(output).toContain('Secrets found');
   });

@@ -26,7 +26,7 @@ export class AnnotationsGenerator {
       annotations.push({
         file: '.', // Global repository level annotation
         line: 1,
-        title: `Git Guardian: ${res.severity}`,
+        title: `CommitGuard: ${res.severity}`,
         message: `${res.message}\n\nRemediation: ${res.remediation}`,
         annotation_level: level
       });

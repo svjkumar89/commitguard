@@ -22,7 +22,7 @@ describe('GitHub Generators', () => {
 
   it('PRSummaryGenerator should create markdown', () => {
     const summary = PRSummaryGenerator.generate(dummyResult);
-    expect(summary).toContain('Git Guardian Enterprise Risk Report');
+    expect(summary).toContain('CommitGuard Policy Report');
     expect(summary).toContain('80 / 100');
     expect(summary).toContain('Something is wrong');
   });
@@ -31,7 +31,7 @@ describe('GitHub Generators', () => {
     const annotations = AnnotationsGenerator.generate(dummyResult);
     expect(annotations.length).toBe(1);
     expect(annotations[0].annotation_level).toBe('warning');
-    expect(annotations[0].title).toBe('Git Guardian: WARNING');
+    expect(annotations[0].title).toBe('CommitGuard: WARNING');
     expect(annotations[0].message).toContain('Something is wrong');
   });
 });
