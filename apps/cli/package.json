@@ -1,6 +1,6 @@
 ﻿{
   "name": "commitguard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Enterprise-grade Git policy engine — secrets detection, branch policies, SQL safety, and CI integration in one CLI",
   "license": "MIT",
   "files": ["dist"],
