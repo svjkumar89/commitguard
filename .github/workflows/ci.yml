@@ -68,6 +68,11 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Copy docs into CLI package
+        run: |
+          cp README.md apps/cli/README.md
+          cp LICENSE apps/cli/LICENSE
+
       - name: Publish commitguard CLI
         working-directory: apps/cli
         run: npm publish --access public
