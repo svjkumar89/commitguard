@@ -78,21 +78,27 @@ describe('Additional Validators', () => {
   });
 
   it('SecretsValidator should block on AWS access key', async () => {
-    vi.spyOn(fs, 'readFile').mockResolvedValueOnce('const key = "AKIAIOSFODNN7EXAMPLE";');
+    vi.spyOn(fs, 'readFile')
+      .mockRejectedValueOnce(new Error('not found'))  // .commitguardignore
+      .mockResolvedValueOnce('const key = "AKIAIOSFODNN7EXAMPLE";' as any);
     const val = new SecretsValidator();
     const res = await val.run({ ...dummyContext, files: ['test.ts'] });
     expect(res.status).toBe(Severity.BLOCK);
   });
 
   it('SecretsValidator should block on GitHub PAT', async () => {
-    vi.spyOn(fs, 'readFile').mockResolvedValueOnce('const token = "ghp_abcdefghijklmnopqrstuvwxyz1234567890";');
+    vi.spyOn(fs, 'readFile')
+      .mockRejectedValueOnce(new Error('not found'))  // .commitguardignore
+      .mockResolvedValueOnce('const token = "ghp_abcdefghijklmnopqrstuvwxyz1234567890";' as any);
     const val = new SecretsValidator();
     const res = await val.run({ ...dummyContext, files: ['config.ts'] });
     expect(res.status).toBe(Severity.BLOCK);
   });
 
   it('SecretsValidator should pass when line has commitguard:ignore', async () => {
-    vi.spyOn(fs, 'readFile').mockResolvedValueOnce('const key = "AKIAIOSFODNN7EXAMPLE"; // commitguard:ignore');
+    vi.spyOn(fs, 'readFile')
+      .mockRejectedValueOnce(new Error('not found'))  // .commitguardignore
+      .mockResolvedValueOnce('const key = "AKIAIOSFODNN7EXAMPLE"; // commitguard:ignore' as any);
     const val = new SecretsValidator();
     const res = await val.run({ ...dummyContext, files: ['test.ts'] });
     expect(res.status).toBe(Severity.PASS);
