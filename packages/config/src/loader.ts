@@ -1,4 +1,4 @@
-﻿import { z } from 'zod';
+import { z } from 'zod';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import yaml from 'js-yaml';

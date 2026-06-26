@@ -1,4 +1,4 @@
-﻿import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { PRSummaryGenerator } from '../src/prSummary.js';
 import { AnnotationsGenerator } from '../src/annotations.js';
 import { Severity } from '@commitguard/shared';

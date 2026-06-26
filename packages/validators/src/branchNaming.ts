@@ -1,4 +1,4 @@
-﻿import { Validator, ValidationContext } from '@commitguard/shared';
+import { Validator, ValidationContext } from '@commitguard/shared';
 import { CommitGuardConfig } from '@commitguard/config';
 import { createPassResult, createBlockResult } from './utils.js';
 

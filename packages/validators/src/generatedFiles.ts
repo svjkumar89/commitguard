@@ -1,4 +1,4 @@
-﻿import { Validator, ValidationContext } from '@commitguard/shared';
+import { Validator, ValidationContext } from '@commitguard/shared';
 import { createPassResult, createWarningResult } from './utils.js';
 
 export class GeneratedFilesValidator implements Validator {

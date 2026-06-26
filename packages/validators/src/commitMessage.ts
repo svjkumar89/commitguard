@@ -1,4 +1,4 @@
-﻿import { Validator, ValidationContext } from '@commitguard/shared';
+import { Validator, ValidationContext } from '@commitguard/shared';
 import { createPassResult, createBlockResult } from './utils.js';
 import fs from 'node:fs/promises';
 

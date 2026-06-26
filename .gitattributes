@@ -1,5 +1,5 @@
-# Normalise line endings to LF in the repo, convert to CRLF on Windows checkout
-* text=auto eol=lf
+# Normalise line endings to LF, no BOM
+* text=auto eol=lf working-tree-encoding=UTF-8
 *.ts text eol=lf
 *.js text eol=lf
 *.json text eol=lf

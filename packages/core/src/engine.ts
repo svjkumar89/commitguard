@@ -1,4 +1,4 @@
-﻿import { 
+import { 
   INITIAL_RISK_SCORE, 
   ValidationContext, 
   ValidationResult, 

@@ -1,4 +1,4 @@
-﻿import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { BranchAgeValidator } from '../src/branchAge.js';
 import { BranchBehindRemoteValidator } from '../src/branchBehindRemote.js';
 import { MergeMarkersValidator } from '../src/mergeMarkers.js';

@@ -1,4 +1,4 @@
-﻿import { EngineResult } from '@commitguard/core';
+import { EngineResult } from '@commitguard/core';
 import { Severity } from '@commitguard/shared';
 
 export interface GitHubAnnotation {

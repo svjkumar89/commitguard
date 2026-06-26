@@ -1,4 +1,4 @@
-﻿import { ValidationResult, Severity, Violation } from '@commitguard/shared';
+import { ValidationResult, Severity, Violation } from '@commitguard/shared';
 
 export function createPassResult(message: string = 'Validation passed.'): ValidationResult {
   return {

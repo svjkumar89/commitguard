@@ -1,4 +1,4 @@
-﻿import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { BranchNamingValidator } from '../src/branchNaming.js';
 import { ProtectedBranchesValidator } from '../src/protectedBranches.js';
 import { Severity, ValidationContext } from '@commitguard/shared';

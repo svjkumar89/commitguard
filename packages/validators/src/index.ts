@@ -1,4 +1,4 @@
-﻿export * from './branchNaming.js';
+export * from './branchNaming.js';
 export * from './protectedBranches.js';
 export * from './branchAge.js';
 export * from './branchBehindRemote.js';

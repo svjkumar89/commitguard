@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { CliReporter } from '../src/cliReporter.js';
 import { EngineResult } from '@commitguard/core';
 import { Severity } from '@commitguard/shared';

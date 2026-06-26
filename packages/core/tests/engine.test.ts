@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { RiskEngine } from '../src/engine.js';
 import { Validator, Severity, ValidationContext } from '@commitguard/shared';
 
