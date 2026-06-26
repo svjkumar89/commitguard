@@ -41,3 +41,4 @@ Thumbs.db
 
 # CommitGuard runtime files
 .commitguard/hooks/
+package-lock.json
