@@ -18,6 +18,9 @@ export const ConfigSchema = z.object({
     commitMessage: z.boolean().default(true),
     buildVerification: z.boolean().default(true),
     testVerification: z.boolean().default(true),
+    forcePush: z.boolean().default(true),
+    suspiciousDiff: z.boolean().default(true),
+    codeOwnershipDeletion: z.boolean().default(true),
   }).default({}),
   rules: z.object({
     maxBranchAgeDays: z.number().default(30),
@@ -30,6 +33,9 @@ export const ConfigSchema = z.object({
     branchNamingPattern: z.string().optional(),
     // Scan settings
     scanDepth: z.number().default(50),
+    // SuspiciousDiff thresholds
+    suspiciousDiffRatio: z.number().default(10),    // block if deletions/additions > this
+    suspiciousDiffWarnRatio: z.number().default(5), // warn if deletions/additions > this
   }).default({})
 });
 

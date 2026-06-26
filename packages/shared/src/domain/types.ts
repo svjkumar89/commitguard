@@ -11,11 +11,19 @@ export interface Violation {
   rule: string;
 }
 
+export interface PushInfo {
+  localRef: string;
+  localSha: string;
+  remoteRef: string;
+  remoteSha: string;
+}
+
 export interface ValidationContext {
   cwd: string;
   files: string[];
   branch: string;
   isCI: boolean;
+  pushInfoLines?: PushInfo[];   // populated during pre-push hook only
 }
 
 export interface ValidationResult {

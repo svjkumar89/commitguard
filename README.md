@@ -65,6 +65,7 @@ yarn add -D commitguard
 |---|---|
 | `commitguard init` | Create config file, install hooks, generate GitHub Actions workflow |
 | `commitguard validate` | Run all validators against staged files |
+| `commitguard push-check` | Run force-push + suspicious-diff checks (auto-called by pre-push hook) |
 | `commitguard scan [--depth 50]` | Scan git history for secrets and dangerous SQL |
 | `commitguard doctor` | Diagnose setup: config, hooks, git, node version |
 | `commitguard status` | Show current risk score for staged changes |
@@ -103,6 +104,8 @@ CommitGuard ships **16 validators** across two severity levels:
 | **MergeMarkers** | Unresolved merge conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) |
 | **SqlSafety** | `DROP TABLE`, `TRUNCATE`, `DELETE`/`UPDATE` without `WHERE` — across `.sql`, `.ts`, `.js`, `.py`, `.go`, `.java` and more |
 | **CommitMessage** | Messages that don't follow [Conventional Commits](https://www.conventionalcommits.org) (`feat:`, `fix:`, `docs:`, etc.) |
+| **ForcePush** | Force-push / history rewrites on protected branches — blocks `git push --force` that would destroy shared history. Warns on non-protected branches. |
+| **SuspiciousDiff** | Commits where deletions vastly outweigh additions (e.g. 10× ratio, >500 lines) — catches accidental code wipes and branch resets. |
 
 ### ⚠️  WARNING — Commit is allowed, score deducted
 
@@ -118,6 +121,7 @@ CommitGuard ships **16 validators** across two severity levels:
 | **MergeConflictPrediction** | Predicts merge conflicts before they happen |
 | **BuildVerification** | Build failure detected (CI mode only) |
 | **TestVerification** | Test failure detected (CI mode only) |
+| **CodeOwnershipDeletion** | Deleting files that are owned (via CODEOWNERS) by another team member — requires explicit review |
 
 ---
 
@@ -162,6 +166,9 @@ validators:
   deletedFiles: true
   buildVerification: true   # CI mode only
   testVerification: true    # CI mode only
+  forcePush: true           # block force-pushes on protected branches
+  suspiciousDiff: true      # block extreme deletion:addition ratios
+  codeOwnershipDeletion: true  # warn when deleting files owned by others
 
 rules:
   maxBranchAgeDays: 30
@@ -188,6 +195,8 @@ rules:
     - .pdf
     - .svg
   scanDepth: 50
+  suspiciousDiffRatio: 10      # BLOCK if deletions/additions > 10×
+  suspiciousDiffWarnRatio: 5   # WARN if deletions/additions > 5×
 ```
 
 ### Disable a specific validator

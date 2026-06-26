@@ -14,6 +14,9 @@ export * from './sqlSafety.js';
 export * from './commitMessage.js';
 export * from './buildVerification.js';
 export * from './testVerification.js';
+export * from './forcePush.js';
+export * from './suspiciousDiff.js';
+export * from './codeOwnershipDeletion.js';
 
 import { Validator } from '@commitguard/shared';
 import { CommitGuardConfig } from '@commitguard/config';
@@ -34,6 +37,9 @@ import { SqlSafetyValidator } from './sqlSafety.js';
 import { CommitMessageValidator } from './commitMessage.js';
 import { BuildVerificationValidator } from './buildVerification.js';
 import { TestVerificationValidator } from './testVerification.js';
+import { ForcePushValidator } from './forcePush.js';
+import { SuspiciousDiffValidator } from './suspiciousDiff.js';
+import { CodeOwnershipDeletionValidator } from './codeOwnershipDeletion.js';
 
 export function getValidators(config: CommitGuardConfig, commitMsgFile?: string): Validator[] {
   const validators: Validator[] = [];
@@ -54,6 +60,9 @@ export function getValidators(config: CommitGuardConfig, commitMsgFile?: string)
   if (config.validators.commitMessage) validators.push(new CommitMessageValidator(commitMsgFile));
   if (config.validators.buildVerification) validators.push(new BuildVerificationValidator());
   if (config.validators.testVerification) validators.push(new TestVerificationValidator());
-  
+  if (config.validators.forcePush) validators.push(new ForcePushValidator(config));
+  if (config.validators.suspiciousDiff) validators.push(new SuspiciousDiffValidator(config));
+  if (config.validators.codeOwnershipDeletion) validators.push(new CodeOwnershipDeletionValidator());
+
   return validators;
 }

@@ -6,7 +6,7 @@ import { RiskEngine } from '@commitguard/core';
 import { getValidators, SecretsValidator, SqlSafetyValidator } from '@commitguard/validators';
 import { CliReporter, JsonReporter } from '@commitguard/reporters';
 import { PRSummaryGenerator, GitHubActionGenerator } from '@commitguard/github';
-import { ValidationContext, Severity } from '@commitguard/shared';
+import { ValidationContext, Severity, PushInfo } from '@commitguard/shared';
 import { execa } from 'execa';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -159,6 +159,63 @@ program
     }
 
     process.exit(1);
+  });
+
+// ── push-check ───────────────────────────────────────────────────────────────
+// Invoked by the pre-push hook with push-ref lines piped via stdin.
+// Each stdin line: "<local-ref> <local-sha> <remote-ref> <remote-sha>"
+program
+  .command('push-check')
+  .description('Run force-push and suspicious-diff checks (called by pre-push hook)')
+  .option('--format <format>', 'Output format: cli | json', 'cli')
+  .action(async (options) => {
+    const cwd = process.cwd();
+
+    // Read push-ref lines from stdin
+    const stdinData = await new Promise<string>((resolve) => {
+      let data = '';
+      process.stdin.setEncoding('utf-8');
+      process.stdin.on('data', chunk => { data += chunk; });
+      process.stdin.on('end', () => resolve(data));
+      // If stdin is a TTY (no piped input), resolve immediately
+      if (process.stdin.isTTY) resolve('');
+    });
+
+    const pushInfoLines: PushInfo[] = stdinData
+      .trim()
+      .split('\n')
+      .filter(Boolean)
+      .map(line => {
+        const [localRef, localSha, remoteRef, remoteSha] = line.split(' ');
+        return { localRef, localSha, remoteRef, remoteSha };
+      });
+
+    const config = await ConfigLoader.load(cwd);
+    const git = new GitOperations(cwd);
+
+    const context: ValidationContext = {
+      cwd,
+      files: await git.getStagedFiles(),
+      branch: await git.getCurrentBranch(),
+      isCI: false,
+      pushInfoLines,
+    };
+
+    const engine = new RiskEngine();
+    // Only run push-relevant validators
+    const { ForcePushValidator, SuspiciousDiffValidator } = await import('@commitguard/validators');
+    if (config.validators.forcePush) engine.register(new ForcePushValidator(config));
+    if (config.validators.suspiciousDiff) engine.register(new SuspiciousDiffValidator(config));
+
+    const result = await engine.run(context);
+
+    if (options.format === 'json') {
+      console.log(new JsonReporter().report(result));
+    } else {
+      console.log(new CliReporter().report(result));
+    }
+
+    if (result.status === Severity.BLOCK) process.exit(1);
   });
 
 // ── doctor ────────────────────────────────────────────────────────────────────
