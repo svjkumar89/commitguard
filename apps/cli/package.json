@@ -4,7 +4,7 @@
   "description": "Enterprise-grade Git policy engine — secrets detection, branch policies, SQL safety, and CI integration in one CLI",
   "license": "MIT",
   "files": ["dist"],
-  "engines": { "node": ">=18.0.0" },
+  "engines": { "node": ">=22.13.0" },
   "homepage": "https://github.com/svjkumar89/commitguard",
   "repository": { "type": "git", "url": "https://github.com/svjkumar89/commitguard.git" },
   "bugs": { "url": "https://github.com/svjkumar89/commitguard/issues" },
