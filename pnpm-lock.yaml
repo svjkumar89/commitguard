@@ -29,34 +29,40 @@ importers:
 
   apps/cli:
     dependencies:
-      '@gitguardian/config':
-        specifier: workspace:*
-        version: link:../../packages/config
-      '@gitguardian/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@gitguardian/git':
-        specifier: workspace:*
-        version: link:../../packages/git
-      '@gitguardian/github':
-        specifier: workspace:*
-        version: link:../../packages/github
-      '@gitguardian/reporters':
-        specifier: workspace:*
-        version: link:../../packages/reporters
-      '@gitguardian/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@gitguardian/validators':
-        specifier: workspace:*
-        version: link:../../packages/validators
       commander:
         specifier: ^11.1.0
         version: 11.1.0
+      execa:
+        specifier: ^8.0.0
+        version: 8.0.1
       picocolors:
         specifier: ^1.0.0
         version: 1.1.1
+      zod:
+        specifier: ^3.22.0
+        version: 3.25.76
     devDependencies:
+      '@commitguard/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@commitguard/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@commitguard/git':
+        specifier: workspace:*
+        version: link:../../packages/git
+      '@commitguard/github':
+        specifier: workspace:*
+        version: link:../../packages/github
+      '@commitguard/reporters':
+        specifier: workspace:*
+        version: link:../../packages/reporters
+      '@commitguard/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@commitguard/validators':
+        specifier: workspace:*
+        version: link:../../packages/validators
       tsup:
         specifier: ^8.0.0
         version: 8.5.1(postcss@8.5.15)(typescript@5.9.3)
@@ -66,7 +72,7 @@ importers:
 
   packages/config:
     dependencies:
-      '@gitguardian/shared':
+      '@commitguard/shared':
         specifier: workspace:*
         version: link:../shared
       js-yaml:
@@ -91,10 +97,10 @@ importers:
 
   packages/core:
     dependencies:
-      '@gitguardian/config':
+      '@commitguard/config':
         specifier: workspace:*
         version: link:../config
-      '@gitguardian/shared':
+      '@commitguard/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -129,10 +135,10 @@ importers:
 
   packages/github:
     dependencies:
-      '@gitguardian/core':
+      '@commitguard/core':
         specifier: workspace:*
         version: link:../core
-      '@gitguardian/shared':
+      '@commitguard/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -148,10 +154,10 @@ importers:
 
   packages/reporters:
     dependencies:
-      '@gitguardian/core':
+      '@commitguard/core':
         specifier: workspace:*
         version: link:../core
-      '@gitguardian/shared':
+      '@commitguard/shared':
         specifier: workspace:*
         version: link:../shared
       cli-table3:
@@ -185,13 +191,13 @@ importers:
 
   packages/validators:
     dependencies:
-      '@gitguardian/config':
+      '@commitguard/config':
         specifier: workspace:*
         version: link:../config
-      '@gitguardian/git':
+      '@commitguard/git':
         specifier: workspace:*
         version: link:../git
-      '@gitguardian/shared':
+      '@commitguard/shared':
         specifier: workspace:*
         version: link:../shared
       execa:
