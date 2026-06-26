@@ -28,7 +28,7 @@
 
 ```bash
 # Install globally
-npm install -g commitguard
+npm install -g @svjkumar89/commitguard
 
 # Initialize in your repository (config + hooks + GitHub Actions)
 cd your-repo
@@ -45,10 +45,10 @@ git commit -m "feat: add user auth"
 
 ```bash
 # Global (recommended)
-npm install -g commitguard
+npm install -g @svjkumar89/commitguard
 
 # Project-local
-npm install --save-dev commitguard
+npm install --save-dev @svjkumar89/commitguard
 # or
 pnpm add -D commitguard
 # or
@@ -259,7 +259,7 @@ jobs:
         with:
           node-version: '22'
 
-      - run: npm install -g commitguard
+      - run: npm install -g @svjkumar89/commitguard
 
       - name: Run CommitGuard
         run: commitguard validate --ci
