@@ -21,8 +21,10 @@ npx commitguard validate
     await this.writeHook('pre-commit', preCommitScript);
 
     const prePushScript = `#!/bin/sh
-# CommitGuard pre-push hook â€” https://github.com/svjkumar89/commitguard
-npx commitguard validate
+# CommitGuard pre-push hook — https://github.com/svjkumar89/commitguard
+# Reads push-ref info from stdin and passes to commitguard for force-push detection
+PUSH_INFO=$(cat -)
+echo “$PUSH_INFO” | npx commitguard push-check
 `;
     await this.writeHook('pre-push', prePushScript);
 
