@@ -1,0 +1,22 @@
+# .commitguardignore — CommitGuard false-positive suppression
+# Rename this file to .commitguardignore and customize as needed.
+# Supports glob patterns. One pattern per line. Lines starting with # are comments.
+
+# Test fixtures with intentional fake secrets
+tests/fixtures/**
+**/__mocks__/**
+**/*.test.ts
+**/*.spec.ts
+
+# Generated files
+src/generated/**
+dist/**
+build/**
+
+# Third-party vendor code
+vendor/**
+node_modules/**
+
+# Documentation examples
+docs/**
+*.md

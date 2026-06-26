@@ -1,0 +1,23 @@
+﻿{
+  "name": "@commitguard/reporters",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@commitguard/shared": "workspace:*",
+    "@commitguard/core": "workspace:*",
+    "picocolors": "^1.0.0",
+    "cli-table3": "^0.6.3"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}

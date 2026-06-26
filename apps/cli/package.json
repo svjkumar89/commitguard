@@ -1,0 +1,35 @@
+﻿{
+  "name": "commitguard",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Git policy engine — secrets detection, branch policies, SQL safety, and CI integration in one CLI",
+  "license": "MIT",
+  "files": ["dist"],
+  "engines": { "node": ">=18.0.0" },
+  "homepage": "https://github.com/svjkumar89/commitguard",
+  "repository": { "type": "git", "url": "https://github.com/svjkumar89/commitguard.git" },
+  "bugs": { "url": "https://github.com/svjkumar89/commitguard/issues" },
+  "keywords": ["git", "pre-commit", "secrets-detection", "git-hooks", "security", "devops", "ci", "policy"],
+  "bin": {
+    "commitguard": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@commitguard/shared": "workspace:*",
+    "@commitguard/config": "workspace:*",
+    "@commitguard/core": "workspace:*",
+    "@commitguard/git": "workspace:*",
+    "@commitguard/validators": "workspace:*",
+    "@commitguard/reporters": "workspace:*",
+    "@commitguard/github": "workspace:*",
+    "commander": "^11.1.0",
+    "picocolors": "^1.0.0",
+    "execa": "^8.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
